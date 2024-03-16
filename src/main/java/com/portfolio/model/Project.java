@@ -1,0 +1,98 @@
+package com.portfolio.model;
+
+import java.sql.Blob;
+import java.util.Date;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "projects")
+public class Project {
+    @Id
+    private String id;
+    private String name;
+    private String description;
+    private Blob image;
+    private String technologyTags;
+    private Date startDate;
+    private Date endDate;
+    private String demoUrl;
+    private String gitubUrl;
+
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Blob getImage() {
+        return image;
+    }
+
+    public void setImage(Blob image) {
+        this.image = image;
+    }
+
+    public String getTechnologyTags() {
+        return technologyTags;
+    }
+
+    public void setTechnologyTags(String technologyTags) {
+        this.technologyTags = technologyTags;
+    }
+
+    public Date getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+
+    public Date getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
+    }
+
+    public String getDemoUrl() {
+        return demoUrl;
+    }
+
+    public void setDemoUrl(String demoUrl) {
+        this.demoUrl = demoUrl;
+    }
+
+    public String getGitubUrl() {
+        return gitubUrl;
+    }
+
+    public void setGitubUrl(String gitubUrl) {
+        this.gitubUrl = gitubUrl;
+    }
+}
