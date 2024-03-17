@@ -2,6 +2,8 @@ package com.portfolio.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
@@ -29,7 +31,7 @@ public class ProjectController {
 	ProjectService projectService;
 	
 	@PostMapping("/create")
-	public ResponseEntity<Project> createProject(@RequestBody Project project, @RequestHeader(name = "sessionToken") String sessionToken) {
+	public ResponseEntity<Project> createProject(@Valid @RequestBody Project project, @RequestHeader(name = "sessionToken") String sessionToken) {
 		return new ResponseEntity<>(projectService.createProject(project, sessionToken),HttpStatus.ACCEPTED);
 	}
 	@GetMapping("/loadAllProjects")
