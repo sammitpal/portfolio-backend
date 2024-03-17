@@ -8,19 +8,24 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "projects")
 public class Project {
     @Id
     private String id;
+    @NotBlank(message="Project Name cannot be blank")
     private String name;
+    @NotBlank(message="Project Description cannot be blank")
     private String description;
     private Blob image;
+    @NotBlank(message="Technology Tags cannot be blank")
     private String technologyTags;
     private Date startDate;
     private Date endDate;
     private String demoUrl;
+    @NotBlank(message="Github URL cannot be blank")
     private String gitubUrl;
 
 
