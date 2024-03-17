@@ -12,16 +12,7 @@ import org.springframework.web.client.RestTemplate;
 @SpringBootApplication
 @EnableCaching
 public class PortfolioApiApplication {
-
-
 	public static void main(String[] args) {
 		SpringApplication.run(PortfolioApiApplication.class, args);
 	}
-
-	@Bean
-	public RestTemplate restTemplate() {
-		return new RestTemplate();
-	}
-	
-
 }

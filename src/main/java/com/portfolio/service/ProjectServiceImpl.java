@@ -23,16 +23,19 @@ public class ProjectServiceImpl implements ProjectService {
 
 	Logger LOG = LoggerFactory.getLogger(ProjectServiceImpl.class);
 
-	@Autowired
-	IPService ipService;
 	
 	@Autowired
 	ProjectRepository projectRepository;
 
+	SessionServiceImpl sessionService = null;
+
 	@Override
 	public Project createProject(Project project, String sessionToken) {
+
+		sessionService = new SessionServiceImpl();
+
 		Project savedProject = null;
-		if(verifyToken(sessionToken)) {
+		if(sessionService.verifyToken(sessionToken)) {
 			project.setId(UUID.randomUUID().toString());
 			savedProject = projectRepository.save(project);
 		}
@@ -44,8 +47,11 @@ public class ProjectServiceImpl implements ProjectService {
 	
 	@Override
 	public List<Project> loadAll(String sessionToken) {
+
+		sessionService = new SessionServiceImpl();
+
 		List<Project> projects;
-		if(verifyToken(sessionToken)) {
+		if(sessionService.verifyToken(sessionToken)) {
 			LOG.info("TOKEN VERIFICATION SUCCESSFUL");
 			projects = projectRepository.findAll();
 			LOG.info("FETCH PROJECTS FROM DB");
@@ -54,40 +60,6 @@ public class ProjectServiceImpl implements ProjectService {
 			throw new SessionExpiredException("Session token is expired or invalid");
 		}
 		return projects;
-	}
-
-	public Boolean verifyToken(String token) {
-		byte[] decode = Base64.getDecoder().decode(token);
-		String decodedString = new String(decode);
-
-		String currentIP = ipService.fetchIP().getBody().toString().trim();
-
-		ObjectMapper mapper = new ObjectMapper();
-		try {
-			Date currentDate = new Date();
-			Session session = mapper.readValue(decodedString, Session.class);
-			if (session != null) {
-				if (session.getExpDate().compareTo(currentDate) > -1) {
-					if (currentIP.equals(session.getIp())) {
-						LOG.info("grater than -1");
-						return true;
-					}
-					else {
-						return false;
-					}
-
-				} else {
-					LOG.info("less than -1");
-					return false;
-				}
-			} else {
-				return false;
-			}
-		} catch (IOException e) {
-			throw new SessionExpiredException(e.getLocalizedMessage());
-		} catch (JsonParseException e) {
-			throw new SessionExpiredException(e.getLocalizedMessage());
-		}
 	}
 
 	@Override
