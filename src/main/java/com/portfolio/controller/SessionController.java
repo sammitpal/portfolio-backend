@@ -10,7 +10,7 @@ import com.portfolio.service.SessionService;
 
 @RestController
 @RequestMapping("/session")
-@CrossOrigin("*")
+@CrossOrigin("https://sammit.online")
 public class SessionController {
 
 	@Autowired

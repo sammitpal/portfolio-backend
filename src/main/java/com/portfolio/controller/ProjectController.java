@@ -24,7 +24,7 @@ import com.portfolio.service.ProjectService;
 
 @RestController
 @RequestMapping("/project")
-@CrossOrigin("*")
+@CrossOrigin("https://sammit.online")
 public class ProjectController {
 
 	@Autowired
