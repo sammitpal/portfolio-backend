@@ -26,7 +26,7 @@ public class Project {
     private Date endDate;
     private String demoUrl;
     @NotBlank(message="Github URL cannot be blank")
-    private String gitubUrl;
+    private String githubUrl;
 
 
     public String getId() {
@@ -93,11 +93,11 @@ public class Project {
         this.demoUrl = demoUrl;
     }
 
-    public String getGitubUrl() {
-        return gitubUrl;
+    public String getGithubUrl() {
+        return githubUrl;
     }
 
-    public void setGitubUrl(String gitubUrl) {
-        this.gitubUrl = gitubUrl;
+    public void setGitubUrl(String githubUrl) {
+        this.githubUrl = githubUrl;
     }
 }

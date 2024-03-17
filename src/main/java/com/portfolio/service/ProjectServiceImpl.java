@@ -53,7 +53,7 @@ public class ProjectServiceImpl implements ProjectService {
 		List<Project> projects;
 		if(sessionService.verifyToken(sessionToken)) {
 			LOG.info("TOKEN VERIFICATION SUCCESSFUL");
-			projects = projectRepository.findAll();
+			projects = projectRepository.getAllProjects();
 			LOG.info("FETCH PROJECTS FROM DB");
 		}
 		else {
