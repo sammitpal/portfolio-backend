@@ -15,7 +15,7 @@ public class Experience {
     private String company;
     @NotBlank(message = "Description cannot be empty")
     private String description;
-    @NotBlank(message = "Start date cannot be empty")
+    private String role;
     private Date startDate;
     private Date endDate;
 
@@ -58,4 +58,14 @@ public class Experience {
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
     }
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+    
+    
 }
