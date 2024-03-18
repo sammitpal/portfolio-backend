@@ -1,27 +1,18 @@
 package com.portfolio.service;
 
-import java.io.IOException;
-import java.util.Base64;
-import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.json.JsonParseException;
 import org.springframework.stereotype.Service;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.portfolio.exception.SessionExpiredException;
 import com.portfolio.model.Project;
-import com.portfolio.model.Session;
 import com.portfolio.repository.ProjectRepository;
 
 @Service
 public class ProjectServiceImpl implements ProjectService {
 
-	Logger LOG = LoggerFactory.getLogger(ProjectServiceImpl.class);
 
 	
 	@Autowired
@@ -35,7 +26,7 @@ public class ProjectServiceImpl implements ProjectService {
 		sessionService = new SessionServiceImpl();
 
 		Project savedProject = null;
-		if(sessionService.verifyToken(sessionToken)) {
+		if(sessionService.verifyToken(sessionToken)==true) {
 			project.setId(UUID.randomUUID().toString());
 			savedProject = projectRepository.save(project);
 		}
@@ -51,10 +42,8 @@ public class ProjectServiceImpl implements ProjectService {
 		sessionService = new SessionServiceImpl();
 
 		List<Project> projects;
-		if(sessionService.verifyToken(sessionToken)) {
-			LOG.info("TOKEN VERIFICATION SUCCESSFUL");
+		if(sessionService.verifyToken(sessionToken)==true) {
 			projects = projectRepository.getAllProjects();
-			LOG.info("FETCH PROJECTS FROM DB");
 		}
 		else {
 			throw new SessionExpiredException("Session token is expired or invalid");

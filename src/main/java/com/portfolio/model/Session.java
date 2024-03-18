@@ -2,10 +2,6 @@ package com.portfolio.model;
 
 import java.util.Date;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
 public class Session {
     private String ip;
     private Date expDate;

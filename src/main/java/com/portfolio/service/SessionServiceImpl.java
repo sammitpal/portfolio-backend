@@ -4,26 +4,24 @@ import java.io.IOException;
 import java.util.Base64;
 import java.util.Date;
 
-import com.portfolio.exception.SessionExpiredException;
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.json.JsonParseException;
-import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
-
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.portfolio.model.Session;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
-import javax.servlet.http.HttpServletRequest;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.portfolio.exception.ParseException;
+import com.portfolio.exception.SessionExpiredException;
+import com.portfolio.model.Session;
 
 @Service
 public class SessionServiceImpl {
-
-	Logger LOG = LoggerFactory.getLogger(SessionServiceImpl.class);
 
 	@Autowired
 	private HttpServletRequest request;
@@ -40,10 +38,9 @@ public class SessionServiceImpl {
 		try {
 			jsonString = obj.writeValueAsString(session);
 		} catch (JsonProcessingException e) {
-			e.printStackTrace();
+			throw new ParseException(e.getLocalizedMessage());
 		}
-		String encodedString = Base64.getEncoder().encodeToString(jsonString.getBytes());
-		return encodedString;
+		return Base64.getEncoder().encodeToString(jsonString.getBytes());
 	}
 
 	private String fetchClientIP() {
@@ -91,7 +88,6 @@ public class SessionServiceImpl {
 			if (session != null) {
 				if (session.getExpDate().compareTo(currentDate) > -1) {
 					if (currentIP.equals(session.getIp())) {
-						LOG.info("grater than -1");
 						return true;
 					}
 					else {
@@ -99,7 +95,6 @@ public class SessionServiceImpl {
 					}
 
 				} else {
-					LOG.info("less than -1");
 					return false;
 				}
 			} else {
