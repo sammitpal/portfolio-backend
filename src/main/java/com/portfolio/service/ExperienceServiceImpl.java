@@ -22,7 +22,7 @@ public class ExperienceServiceImpl implements ExperienceService{
         Experience savedExperience = null;
 
         sessionService = new SessionServiceImpl();
-        if(sessionService.verifyToken(sessionToken)) {
+        if(Boolean.TRUE.equals(sessionService.verifyToken(sessionToken))) {
             experience.setId(UUID.randomUUID().toString());
             savedExperience = experienceRepository.save(experience);
         }
@@ -36,7 +36,7 @@ public class ExperienceServiceImpl implements ExperienceService{
     public List<Experience> getAllExperience(String sessionToken) {
         List<Experience> experiences= null;
         sessionService = new SessionServiceImpl();
-        if(sessionService.verifyToken(sessionToken)){
+        if(Boolean.TRUE.equals(sessionService.verifyToken(sessionToken))){
             experiences = experienceRepository.findAll();
         }
         return experiences;

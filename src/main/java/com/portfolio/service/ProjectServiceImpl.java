@@ -26,7 +26,7 @@ public class ProjectServiceImpl implements ProjectService {
 		sessionService = new SessionServiceImpl();
 
 		Project savedProject = null;
-		if(sessionService.verifyToken(sessionToken)) {
+		if(Boolean.TRUE.equals(sessionService.verifyToken(sessionToken))) {
 			project.setId(UUID.randomUUID().toString());
 			savedProject = projectRepository.save(project);
 		}
@@ -42,7 +42,7 @@ public class ProjectServiceImpl implements ProjectService {
 		sessionService = new SessionServiceImpl();
 
 		List<Project> projects;
-		if(sessionService.verifyToken(sessionToken)) {
+		if(Boolean.TRUE.equals(sessionService.verifyToken(sessionToken))) {
 			projects = projectRepository.getAllProjects();
 		}
 		else {
