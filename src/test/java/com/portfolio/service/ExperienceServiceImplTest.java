@@ -16,7 +16,7 @@ import java.util.UUID;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-public class ExperienceServiceImplTest {
+class ExperienceServiceImplTest {
 
     @Mock
     private ExperienceRepository experienceRepository;
@@ -33,7 +33,7 @@ public class ExperienceServiceImplTest {
     }
 
     @Test
-    public void testCreateExperience_ValidSession() {
+    void testCreateExperience_ValidSession() {
         // Given
         String sessionToken = "validToken";
         Experience experience = new Experience();
@@ -53,7 +53,7 @@ public class ExperienceServiceImplTest {
     }
 
     @Test
-    public void testCreateExperience_InvalidSession() {
+    void testCreateExperience_InvalidSession() {
         // Given
         String sessionToken = "invalidToken";
         Experience experience = new Experience();
@@ -71,7 +71,7 @@ public class ExperienceServiceImplTest {
     }
 
     @Test
-    public void testGetAllExperience_ValidSession() {
+    void testGetAllExperience_ValidSession() {
         // Given
         String sessionToken = "validToken";
         List<Experience> experienceList = new ArrayList<>();
@@ -92,7 +92,7 @@ public class ExperienceServiceImplTest {
     }
 
     @Test
-    public void testGetAllExperience_InvalidSession() {
+    void testGetAllExperience_InvalidSession() {
         // Given
         String sessionToken = "invalidToken";
 
