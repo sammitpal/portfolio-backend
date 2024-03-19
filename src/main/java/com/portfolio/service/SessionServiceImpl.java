@@ -76,6 +76,8 @@ public class SessionServiceImpl {
 	public Boolean verifyToken(String token) {
 		byte[] decode = Base64.getDecoder().decode(token);
 		String decodedString = new String(decode);
+		
+		Boolean verified = false;
 
 		String currentIP = fetchClientIP().toString().trim();
 
@@ -86,18 +88,12 @@ public class SessionServiceImpl {
 			if (session != null) {
 				if (session.getExpDate().compareTo(currentDate) > -1) {
 					if (currentIP.equals(session.getIp())) {
-						return true;
+						verified=true;
 					}
-					else {
-						return false;
-					}
-
-				} else {
-					return false;
+					
 				}
-			} else {
-				return false;
-			}
+			} 
+			return verified;
 		} catch (IOException | JsonParseException e) {
 			throw new SessionExpiredException(e.getLocalizedMessage());
 		}
