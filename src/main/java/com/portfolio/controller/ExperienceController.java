@@ -19,7 +19,7 @@ import com.portfolio.service.ExperienceService;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/experience")
+@RequestMapping("/portfolio/experience")
 @CrossOrigin("https://sammit.online")
 public class ExperienceController {
 

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.portfolio.service.SessionServiceImpl;
 
 @RestController
-@RequestMapping("/session")
+@RequestMapping("/portfolio/session")
 @CrossOrigin("https://sammit.online")
 public class SessionController {
 

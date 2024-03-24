@@ -19,7 +19,7 @@ import com.portfolio.service.ProjectService;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/project")
+@RequestMapping("/portfolio/project")
 @CrossOrigin("https://sammit.online")
 public class ProjectController {
 
