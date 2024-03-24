@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.Base64;
 import java.util.Date;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.json.JsonParseException;
 import org.springframework.stereotype.Service;
@@ -15,8 +17,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.portfolio.exception.ParseException;
 import com.portfolio.exception.SessionExpiredException;
 import com.portfolio.model.Session;
-
-import jakarta.servlet.http.HttpServletRequest;
 
 @Service
 public class SessionServiceImpl {

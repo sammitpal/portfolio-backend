@@ -2,6 +2,8 @@ package com.portfolio.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,10 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.portfolio.model.Experience;
 import com.portfolio.service.ExperienceService;
 
-import jakarta.validation.Valid;
-
 @RestController
-@RequestMapping("/portfolio/experience")
+@RequestMapping("/experience")
 @CrossOrigin("https://sammit.online")
 public class ExperienceController {
 
@@ -31,7 +31,7 @@ public class ExperienceController {
         return new ResponseEntity<>(experienceService.getAllExperience(sessionToken), HttpStatus.OK);
     }
 
-    @PostMapping("/create")
+    @PostMapping("/experience/create")
     public ResponseEntity<Experience> createExperience(@Valid @RequestBody Experience experience, @RequestHeader("sessionToken") String sessionToken){
         return new ResponseEntity<>(experienceService.createExperience(experience,sessionToken),HttpStatus.ACCEPTED);
     }

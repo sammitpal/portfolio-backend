@@ -2,6 +2,8 @@ package com.portfolio.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,10 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.portfolio.model.Project;
 import com.portfolio.service.ProjectService;
 
-import jakarta.validation.Valid;
-
 @RestController
-@RequestMapping("/portfolio/project")
+@RequestMapping("/projects")
 @CrossOrigin("https://sammit.online")
 public class ProjectController {
 
