@@ -21,6 +21,7 @@ public class PdfDocumentServiceImpl implements PdfDocumentService{
     
     @Override
     public String savePdf(MultipartFile file, String token) throws IOException {
+    	sessionService = new SessionServiceImpl();
         PdfDocument pdfDocument = new PdfDocument();
         pdfDocument.setId(UUID.randomUUID().toString());
         pdfDocument.setData(file.getBytes());
@@ -34,6 +35,7 @@ public class PdfDocumentServiceImpl implements PdfDocumentService{
     }
 	@Override
 	public byte[] getPdfDataById(String id,String token) {
+		sessionService = new SessionServiceImpl();
 		if(Boolean.TRUE.equals(sessionService.verifyToken(token))) {
 			PdfDocument pdfDocument = resumeRepository.findById(id).orElseThrow(()->new RuntimeException("An error occured"));
 			return pdfDocument.getData();
