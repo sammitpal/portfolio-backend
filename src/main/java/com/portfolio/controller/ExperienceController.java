@@ -25,7 +25,7 @@ public class ExperienceController {
 
     @Autowired
     ExperienceService experienceService;
-
+    
     @GetMapping("/getAllExperience")
     public ResponseEntity<List<Experience>> getAllExperience(@RequestHeader("sessionToken") String sessionToken){
         return new ResponseEntity<>(experienceService.getAllExperience(sessionToken), HttpStatus.OK);
