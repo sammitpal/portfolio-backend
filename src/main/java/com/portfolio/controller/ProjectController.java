@@ -1,5 +1,6 @@
 package com.portfolio.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -7,15 +8,11 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.portfolio.model.Project;
 import com.portfolio.service.ProjectService;
+import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping("/projects")
@@ -29,6 +26,15 @@ public class ProjectController {
 	@PostMapping("/create")
 	public ResponseEntity<Project> createProject(@Valid @RequestBody Project project) {
 		return new ResponseEntity<>(projectService.createProject(project),HttpStatus.ACCEPTED);
+	}
+
+	@PutMapping("/upload/{id}")
+	public ResponseEntity<String> uploadImage(@RequestBody MultipartFile file, @PathVariable String id) throws IOException {
+		String message = "An error occured";
+		if(projectService.uploadImage(file,id)==true){
+			message = "Upload success";
+		}
+		return new ResponseEntity<>(message,HttpStatus.OK);
 	}
 	@GetMapping("/loadAllProjects")
 	public ResponseEntity<List<Project>> loadAllProjects() {
