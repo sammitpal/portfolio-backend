@@ -5,6 +5,7 @@ import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
@@ -17,13 +18,13 @@ public class Project {
     private String name;
     @NotBlank(message="Project Description cannot be blank")
     private String description;
-    private Blob image;
+    @Lob
+    private byte[] image;
     @NotBlank(message="Technology Tags cannot be blank")
     private String technologyTags;
     private Date startDate;
     private Date endDate;
     private String demoUrl;
-    @NotBlank(message="Github URL cannot be blank")
     private String githubUrl;
 
 
@@ -49,14 +50,6 @@ public class Project {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public Blob getImage() {
-        return image;
-    }
-
-    public void setImage(Blob image) {
-        this.image = image;
     }
 
     public String getTechnologyTags() {
@@ -97,5 +90,13 @@ public class Project {
 
     public void setGitubUrl(String githubUrl) {
         this.githubUrl = githubUrl;
+    }
+
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
     }
 }
