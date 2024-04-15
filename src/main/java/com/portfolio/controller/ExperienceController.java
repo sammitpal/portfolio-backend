@@ -31,7 +31,7 @@ public class ExperienceController {
         return new ResponseEntity<>(experienceService.getAllExperience(), HttpStatus.OK);
     }
 
-    @PostMapping("/experience/create")
+    @PostMapping("/create")
     public ResponseEntity<Experience> createExperience(@Valid @RequestBody Experience experience){
         return new ResponseEntity<>(experienceService.createExperience(experience),HttpStatus.ACCEPTED);
     }
