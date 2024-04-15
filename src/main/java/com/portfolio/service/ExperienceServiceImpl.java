@@ -28,7 +28,7 @@ public class ExperienceServiceImpl implements ExperienceService{
     @Override
     public List<Experience> getAllExperience() {
         List<Experience> experiences= null;
-            experiences = experienceRepository.findAll();
+            experiences = experienceRepository.getAllExperiences();
 
         return experiences;
     }
