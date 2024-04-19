@@ -15,7 +15,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-	String urls[] = { "/experience/getAllExperience", "/resume/view", "/projects/loadAllProjects" };
+	String urls[] = { "/experience/getAllExperience", "/resume/view", "/projects/loadAllProjects","/actuator/info" };
 
 //	@Autowired
 //	UserDetailsService userDetailsService;
