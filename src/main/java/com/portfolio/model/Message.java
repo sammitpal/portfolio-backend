@@ -18,7 +18,6 @@ public class Message {
 	private String fName;
 	@Email(message="Please enter a valid email address")
 	private String email;
-	@NotBlank(message="Message content cannot be blank")
 	private String content;
 	private String status;
 	private Date createDt;
